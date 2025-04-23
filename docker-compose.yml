@@ -1,0 +1,56 @@
+services:
+  # Servicio de la base de datos PostgreSQL
+  db_api:
+    #image: postgres:latest
+    image: mysql
+    restart: always
+    environment:
+
+      - MYSQL_DATABASE=db_
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_HOST=''
+    ports:
+      - "3306:3306"
+    volumes:
+      - ~/docker-volumes/mysqld:/var/lib/mysql
+      - my-db-api:/var/lib/mysql
+    networks:
+      - app_api
+
+
+  # Servicio de la aplicación Django
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    restart: always
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    environment:
+      - MYSQL_DATABASE=db_
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_HOST=''
+    
+
+
+    depends_on:
+      - db_api
+
+    networks:
+      - app_api
+
+  
+
+
+volumes:
+
+  my-db-api:
+
+networks:
+  app_api:
+    driver: bridge
