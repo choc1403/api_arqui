@@ -1,9 +1,9 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-const char* ssid = "TU_SSID";
-const char* password = "TU_PASSWORD";
-const char* servidor = "http://tu-api.com/datos"; // Reemplaza con tu URL real
+const char* ssid = "CHOC";
+const char* password = "choc_1403";
+const char* servidor = "http://192.168.32.206:8000/sensor/"; // Reemplaza con tu URL real
 
 void setup() {
   Serial.begin(115200);
