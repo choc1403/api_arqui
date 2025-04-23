@@ -1,0 +1,44 @@
+#include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
+
+const char* ssid = "TU_SSID";
+const char* password = "TU_PASSWORD";
+const char* servidor = "http://tu-api.com/datos"; // Reemplaza con tu URL real
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("WiFi conectado");
+}
+
+void loop() {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    http.begin(servidor);
+    http.addHeader("Content-Type", "application/json");
+
+    int lectura = analogRead(A0);  // Leer valor del potenciómetro
+
+    // Convertir lectura a string para cumplir con value = models.CharField(...)
+    String valorStr = String(lectura);
+
+    // Crear JSON con los campos del modelo
+    String json = "{\"name\": \"potenciometro\", \"value\": \"" + valorStr + "\"}";
+
+    int httpCode = http.POST(json);             // Enviar solicitud POST
+    String respuesta = http.getString();        // Leer respuesta del servidor
+
+    Serial.println("Código HTTP: " + String(httpCode));
+    Serial.println("Respuesta: " + respuesta);
+
+    http.end();
+  }
+
+  delay(5000); // Espera 5 segundos antes de enviar el siguiente valor
+}
+
+

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}grafica_index
+{% load static %}
+
+{% block content %}
+<div class="col-12">
+    <div class="box">
+        <h4>Valor del Sensor</h4>
+        <ul id="sensor-list"></ul>
+
+    </div>
+    
+</div>
+<div class="col-12">
+    {% include 'snippets/grafica.html'%}
+</div>
+
+
+
+{% endblock %}
+
+
+{%block js%}
+<script type="module" src="{% static 'js/grafica.js'%}"></script>
+<script type="module" src="{% static 'js/ultimo_dato.js'%}"></script>
+
+{%endblock%}

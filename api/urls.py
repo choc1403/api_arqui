@@ -12,5 +12,6 @@ router.register(r'sensor',views.SensorViewSet,'sensor_api')
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('inicio',views.inicio, name='inicio'),
     path('admin/', admin.site.urls),
 ]
