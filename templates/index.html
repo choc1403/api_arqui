@@ -2,63 +2,101 @@
 {% load static %}
 
 {% block content %}
-<div class="row box">
-    <div class="col">
-        <div class="card border-dark  card_hover">
-            <div class="card-body">
-                <h4>Valor de Temperatura</h4>
-            <input type="text" id="valor_temperatura" disabled>
+<style>
+    body {
+        background-color: #0d1117;
+        color: #c9d1d9;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
-            </div>
-            
-    
-        </div>
+    .dashboard-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
 
-    </div>
-    <div class="col">
-        <div class="card border-dark  card_hover">
-            <div class="card-body">
-            <h4>Valor de Humedad</h4>
-            <input type="text" id="valor_humedad" disabled>
-            </div>
-    
-        </div>
+    .dashboard-title {
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        color: #f0f6fc;
+    }
 
-    </div>
-    <div class="col">
-        <div class="card border-dark  card_hover" id="dist">
-            <div class="card-body">
-            <h4>Valor de Distancia</h4>
-            <input type="text" id="valor_distancia" disabled>
-            </div>
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
 
-    
+    .sensor-card {
+        background: linear-gradient(145deg, #161b22, #0d1117);
+        padding: 2rem;
+        border-radius: 1.2rem;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+    }
+
+    .sensor-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .sensor-card h4 {
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+        color: #58a6ff;
+    }
+
+    .sensor-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .sensor-input {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: transparent;
+        border: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    .sensor-input:disabled {
+        opacity: 1;
+    }
+</style>
+
+<div class="dashboard-wrapper">
+    <div class="dashboard-title">Panel de Lectura de Sensores</div>
+    <div class="dashboard-grid">
+        <div class="sensor-card">
+            <div class="sensor-icon">🌡️</div>
+            <h4>Temperatura</h4>
+            <input type="text" id="valor_temperatura" class="sensor-input" disabled>
+        </div>
+        <div class="sensor-card">
+            <div class="sensor-icon">💧</div>
+            <h4>Humedad</h4>
+            <input type="text" id="valor_humedad" class="sensor-input" disabled>
+        </div>
+        <div class="sensor-card">
+            <div class="sensor-icon">📏</div>
+            <h4>Distancia</h4>
+            <input type="text" id="valor_distancia" class="sensor-input" disabled>
+        </div>
+        <div class="sensor-card">
+            <div class="sensor-icon">🎚️</div>
+            <h4>Potenciómetro</h4>
+            <input type="text" id="valor_potenciometro" class="sensor-input" disabled>
         </div>
     </div>
-    <div class="col">
-        <div class="card border-dark  card_hover">
-            <div class="card-body">
-            <h4>Valor de Potenciometro</h4>
-            <input type="text" id="valor_potenciometro" disabled>
-            </div>
-    
-        </div>
-    </div>
-    
-    
-    
- 
-    
 </div>
-
-
-
-
 {% endblock %}
 
-
-{%block js%}
-
-<script type="module" src="{% static 'js/ultimo_dato.js'%}"></script>
-
-{%endblock%}
+{% block js %}
+<script type="module" src="{% static 'js/ultimo_dato.js' %}"></script>
+{% endblock %}

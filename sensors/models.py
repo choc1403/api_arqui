@@ -38,9 +38,4 @@ def send_telegram_message(message):
 @receiver(post_save, sender=Sensor)
 def send_alert(sender, instance, **kwargs):
     # Si el código del cliente está vacío o es una cadena vacía, genera uno nuevo
-    if instance.value <= str(50):
-        send_telegram_message('LOS VALORES ESTAN DEMASIADO BAJOS, CUIDADO')
-    elif instance.value == str(0):
-        send_telegram_message('VALOR CRITICO, ESTA EN 0')
-    else:
-        send_telegram_message(str(instance.value))
+    send_telegram_message("SE ESTAN RECIBIENDO LOS DATOS")
