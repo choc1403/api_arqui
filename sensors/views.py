@@ -17,7 +17,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 class SensorViewSet(viewsets.ModelViewSet):
     serializer_class = SensorSerializers
-    queryset = Sensor.objects.all()
+    queryset = Sensor.objects.all().order_by('-id')
 
 
 def inicio(request):

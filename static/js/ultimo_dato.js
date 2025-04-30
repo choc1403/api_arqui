@@ -1,6 +1,10 @@
 import { urls } from './urls.js';
 
 const list = document.getElementById('sensor-list');
+const valor_temperatura = document.getElementById('valor_temperatura');
+const valor_humedad = document.getElementById('valor_humedad');
+const valor_distancia = document.getElementById('valor_distancia');
+const valor_potenciometro= document.getElementById('valor_potenciometro');
 
 async function fetchData() {
     try {
@@ -8,19 +12,28 @@ async function fetchData() {
         if (!response.ok) throw new Error('Error al obtener los datos');
 
         const data = await response.json();
-        console.log('Datos recibidos:', data);
+        console.log('Datos recibidos:', data[0]);
 
-        // Ordenar por fecha descendente y tomar los últimos 5 valores
-        const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-        const latest = sorted.slice(0, 5);
+        
+        // Obtener solo el primer dato
+        if (data ) {
+            valor_temperatura.value = data[0].temperatura;
+            valor_humedad.value = data[0].humedad;
+            valor_distancia.value = data[0].distancia;
+            valor_potenciometro.value = data[0].potenciometro;
 
-        list.innerHTML = ''; // Limpiar contenido anterior
+            if(data[0].distancia <= 5){
+                alert('MUY CERCA');
+            }
 
-        latest.forEach(item => {
-            const li = document.createElement('li');
-            li.textContent = `📅 ${item.date} | Sensor: ${item.name} | Valor: ${item.value}`;
-            list.appendChild(li);
-        });
+        } else {
+            valor_temperatura.value = 'No hay datos';
+            valor_humedad.value = 'No hay datos';
+            valor_distancia.value = 'No hay datos';
+            valor_potenciometro.value = 'No hay datos';
+        }
+
+        
 
     } catch (error) {
         console.error('Error al obtener los datos:', error);
@@ -28,7 +41,7 @@ async function fetchData() {
     }
 }
 
-// Ejecutar solo si el DOM está completamente cargado
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchData();
 });

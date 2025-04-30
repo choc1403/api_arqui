@@ -10,3 +10,14 @@ body{
     border-radius: 2rem;
   }
 
+  .card_hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: white;
+  }
+  
+  .card_hover:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+  }

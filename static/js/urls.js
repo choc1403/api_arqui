@@ -1,11 +1,11 @@
 // Obtener el protocolo (HTTP/HTTPS)
-const protocolo = window.location.protocol; // Ejemplo: "https:"
+const protocolo = window.location.protocol; 
 
 // Obtener el dominio (hostname)
-const dominio = window.location.hostname; // Ejemplo: "example.com"
+const dominio = window.location.hostname; 
 
 // Obtener el puerto
-const puerto = window.location.port; // Ejemplo: "8080" o "" si no está explícito
+const puerto = window.location.port; 
 const baseUrl = `${protocolo}//${dominio}${puerto ? `:${puerto}` : ''}`;
 
 export const urls = {

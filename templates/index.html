@@ -1,18 +1,56 @@
-{% extends 'base.html' %}grafica_index
+{% extends 'base.html' %}
 {% load static %}
 
 {% block content %}
-<div class="col-12">
-    <div class="box">
-        <h4>Valor del Sensor</h4>
-        <ul id="sensor-list"></ul>
+<div class="row box">
+    <div class="col">
+        <div class="card border-dark  card_hover">
+            <div class="card-body">
+                <h4>Valor de Temperatura</h4>
+            <input type="text" id="valor_temperatura" disabled>
+
+            </div>
+            
+    
+        </div>
 
     </div>
+    <div class="col">
+        <div class="card border-dark  card_hover">
+            <div class="card-body">
+            <h4>Valor de Humedad</h4>
+            <input type="text" id="valor_humedad" disabled>
+            </div>
+    
+        </div>
+
+    </div>
+    <div class="col">
+        <div class="card border-dark  card_hover" id="dist">
+            <div class="card-body">
+            <h4>Valor de Distancia</h4>
+            <input type="text" id="valor_distancia" disabled>
+            </div>
+
+    
+        </div>
+    </div>
+    <div class="col">
+        <div class="card border-dark  card_hover">
+            <div class="card-body">
+            <h4>Valor de Potenciometro</h4>
+            <input type="text" id="valor_potenciometro" disabled>
+            </div>
+    
+        </div>
+    </div>
+    
+    
+    
+ 
     
 </div>
-<div class="col-12">
-    {% include 'snippets/grafica.html'%}
-</div>
+
 
 
 
@@ -20,7 +58,7 @@
 
 
 {%block js%}
-<script type="module" src="{% static 'js/grafica.js'%}"></script>
+
 <script type="module" src="{% static 'js/ultimo_dato.js'%}"></script>
 
 {%endblock%}
